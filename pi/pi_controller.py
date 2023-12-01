@@ -5,7 +5,18 @@ import argparse
 #Write you own function that moves the dron from one place to another 
 #the function returns the drone's current location while moving
 #====================================================================================================
-def your_function():
+def your_function(currentCoords, toCoords):
+    while True:
+        if (currentCoords[0] - toCoords[0]) > 0.0001:
+            currentCoords[0] += 1
+        else: 
+            currentCoords[0] = toCoords[0]
+        if (currentCoords[1] - toCoords[1]) > 0.0001:
+            currentCoords[1] += 1
+        else: 
+            currentCoords[1] = toCoords[1]
+
+
     longitude = 13.21008
     latitude = 55.71106
     return (longitude, latitude)
@@ -19,7 +30,8 @@ def run(current_coords, from_coords, to_coords, SERVER_URL):
     # 3. While moving, the drone keeps sending it's location to the database.
     #====================================================================================================
     while True:
-        drone_coords = your_function()
+        drone_coords = your_function(current_coords, from_coords)
+        drone_coords = your_function(current_coords, to_coords)
         with requests.Session() as session:
             drone_location = {'longitude': drone_coords[0],
                               'latitude': drone_coords[1]
