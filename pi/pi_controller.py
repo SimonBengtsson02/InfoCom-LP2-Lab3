@@ -6,23 +6,25 @@ import argparse
 #the function returns the drone's current location while moving
 #====================================================================================================
 def your_function(currentCoords, toCoords):
+    x = currentCoords[0]
+    y = currentCoords[1]
     
-    if (toCoords[0] - currentCoords[0]) > 0.0001:
-        currentCoords[0] += 0.0001
-    elif (toCoords[0] - currentCoords[0]) < 0.0001:
-        currentCoords[0] -= 0.0001
+    if (toCoords[0] - x) > 0.0001:
+        x += 0.0001
+    elif (toCoords[0] - x) < -0.0001:
+        x -= 0.0001
     else: 
-        currentCoords[0] = toCoords[0]
+        x = toCoords[0]
     
-    if (toCoords[1] - currentCoords[1]) > 0.0001:
-        currentCoords[1] += 0.0001
-    elif (toCoords[1] - currentCoords[1]) < 0.0001:
-        currentCoords[0] -= 0.0001
+    if (toCoords[1] - y) > 0.0001:
+        y += 0.0001
+    elif (toCoords[1] - y) < -0.0001:
+        y -= 0.0001
     else: 
-        currentCoords[1] = toCoords[1]
+        y = toCoords[1]
         
 
-    return (currentCoords)
+    return (x,y)
 #====================================================================================================
 
 
